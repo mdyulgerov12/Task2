@@ -1,1 +1,495 @@
+Въпрос 1:  Създайте таблица persons, която да съдържа две колони city_id, FirstName и LastName, като прецените типа данни, 
+който да укажете за колоните. Колоната city_id да бъде първичен ключ.
+
+
+Правилният отговор е: 
+
+
+CREATE TABLE persons
+
+(
+
+city_id INT PRIMARY KEY,
+
+FirstName VARCHAR(50),
+
+LastName VARCHAR(50)
+
+);
+
+
+
+
+
+Въпрос 2:  Имате код за създаване на таблици. Посочете вида на връзката, която се получава. CREATE TABLE drivers(
+
+
+
+Правилният отговор е:   Едно - към - едно 
+
+
+
+
+Въпрос 3:  Направете разлика между видовете връзки и посочете вярното твърдение за всяка една връзка.
+
+
+
+Правилният отговор е:  
+
+
+Връзка много към много → При тази връзка на един запис от първата таблица съответстват много записи от втората таблица и обратно.,
+Връзка едно към едно → При тази връзка на един запис от първата таблица съответства точно един запис от втората таблица.
+Връзка едно към много → При тази връзка един запис от първата таблица съответства на много записи от втората таблица.
+
+
+
+Въпрос 4: Посочете определение за понятието бази от данни.
+
+
+Правилният отговор е:   База от данни се нарича всяка организирана колекция от данни или информация.
+
+
+
+
+Въпрос 5:  Посочете вярното твърдение за по-долу посочения код:
+
+CREATE TABLE Persons(
+
+            ID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+          );
+          
+          
+   Правилният отговор е: Създава таблица с колони ID от тип цяло цисло, FirstName от текстов тип и LastName от текстов тип и не позволява в
+                         клетките да има празна стойност.     
+                         
+                         
+                         
+                         
+ 
+ Въпрос 6:  Ограниченията задават правила за данните в дадена таблица. Посочете вярното твърдение за ограничението PRIMARY KEY.
+ 
+ 
+ 
+ Правилният отговор е: идентифицира уникално всеки запис в таблицата
+ 
+ 
+ 
+ 
+ Въпрос 7:  Като използвате дадената ER диаграма, напишете заявките за създаване база данни online_store и за създаване на таблиците в нея. 
+          
+
+
+
+ Правилният отговор е: 
+ 
+ 
+ 
+CREATE DATABASE online_store;
+
+USE online_store;
+
+CREATE TABLE cities(
+
+city_id INT PRIMARY KEY,
+
+name VARCHAR(50)
+
+);
+
+
+
+CREATE TABLE customers(
+
+customer_id INT PRIMARY KEY,
+
+name VARCHAR(50),
+
+birthday DATE,
+
+city_id INT,
+
+CONSTRAINT fk_customers_cities FOREIGN KEY(city_id)
+
+REFERENCES cities(city_id)
+
+);
+
+
+
+CREATE TABLE orders(
+
+order_id INT PRIMARY KEY,
+
+customer_id INT,
+
+CONSTRAINT fk_orders_customers FOREIGN KEY(customer_id)
+
+REFERENCES customers(customer_id)
+
+);
+
+
+
+CREATE TABLE item_types(
+
+item_type_id INT PRIMARY KEY,
+
+name VARCHAR(50)
+
+);
+
+
+
+CREATE TABLE items(
+
+item_id INT PRIMARY KEY,
+
+name VARCHAR(50),
+
+item_type_id INT,
+
+CONSTRAINT fk_items_item_types FOREIGN KEY(item_type_id)
+
+REFERENCES item_types(item_type_id)
+
+);
+
+
+
+CREATE TABLE order_items(
+
+order_id INT,
+
+item_id INT,
+
+CONSTRAINT pk_order_items PRIMARY KEY (order_id, item_id),
+
+CONSTRAINT fk_order_items_orders FOREIGN KEY(order_id)
+
+REFERENCES orders(order_id),
+
+CONSTRAINT fk_order_items_items FOREIGN KEY(item_id)
+
+REFERENCES items(item_id)
+
+);
+
+
+
+
+Въпрос 8: Създайте таблица cities, която да съдържа две колони - id и name, като прецените типа данни, който да укажете за двете колони.
+          Колоната id да бъде първичен ключ.
+
+
+
+
+ Правилният отговор е:   
+ 
+ 
+ CREATE TABLE cities
+
+(
+
+city_id INT PRIMARY KEY,
+
+name VARCHAR(50)
+
+);
+
+
+
+Въпрос 9:  Моля, посочете вярното твърдение за връзка едно към много.
+
+
+Правилният отговор е: При тази връзка един запис от първата таблица съответства на много записи от втората таблица.
+
+
+
+Въпрос 10: В посочения пример имате заявка за създаване на таблица persons с колони person_id, first_name, passport_id и salary. 
+           Моля определете и изберете липсващите думи за всяка колона от таблицата.
+
+
+
+
+
+Правилният отговор е:
+
+
+
+
+CREATE TABLE persons(
+
+person_id  [INT] PRIMARY KEY,
+
+first_name [VARCHAR(50)],
+
+salary [DECIMAL(8,2)],
+
+passport_id [INT] UNIQUE,
+
+CONSTRAINT fk_persons_passports FOREIGN KEY(passport_id) REFERENCES passports(passport_id)
+
+);
+
+
+
+
+Въпрос 11: 
+
+
+
+Правилният отговор е: 
+
+
+[CREATE] TABLE cities(
+
+city_id [INT] PRIMARY KEY,
+
+name VARCHAR(50)
+
+);
+
+
+
+
+Въпрос 12:  Ограниченията задават правила за данните в дадена таблица. Посочете вярното твърдение за ограничението NOT NULL.
+
+
+Правилният отговор е:  не позволява в клетка да има празна стойност
+
+
+
+
+Въпрос 13 :  Имате код за създаване на таблици, които реализират връзка между таблици едно към много. Открийте липсващите думи и ги поставете в
+             текста чрез влачене, така че да получите коректно работещ код.
+             
+             
+ Правилният отговор е:
+ 
+ 
+ 
+ CREATE TABLE mountains(
+
+  mountain_id INT [PRIMARY KEY],
+
+  mountain_name VARCHAR(50)
+
+);
+
+CREATE TABLE peaks(
+
+  peak_id INT [PRIMARY KEY],
+
+  mountain_id INT,
+
+  [CONSTRAINT] fk_peaks_mountains
+
+  [FOREIGN KEY] (mountain_id)
+  [ REFERENCES] mountains(mountain_id)
+);
+
+
+
+
+
+Въпрос 14:  Имате код за създаване на две таблици. Посочете вида на връзката, която се получава.
+
+CREATE TABLE mountains(
+
+  mountain_id INT PRIMARY KEY,
+
+  mountain_name VARCHAR(50)
+
+);
+
+CREATE TABLE peaks(
+
+  peak_id INT PRIMARY KEY,
+
+  mountain_id INT,
+
+  CONSTRAINT fk_peaks_mountains
+
+  FOREIGN KEY (mountain_id)
+  REFERENCES mountains(mountain_id)
+);
+
+
+
+
+Правилният отговор е:  Един-към-много/Много-към-един
+
+
+
+
+
+Въпрос 15: Имате заявка, която създава таблица Persons и трябва да се използва ограничение, което да постави стойност по подразбиране за град Burgas.
+           От трите посочени думи, изберете ограничението,което трябва да поставите за да решите коректно примера. 
+           
+           
+  Правилният отговор е: 
+  
+  
+  
+  CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            City varchar(255) [DEFAULT] 'Burgas'
+
+);
+
+
+
+
+Въпрос 16:  Имате заявка, която създава таблица Persons и трябва да се постави ограничение годините на хората да са по-големи от 20. От трите посочени 
+            думи, изберете ограничението, което трябва да поставите за да решите коректно примера. 
+            
+            
+  Правилният отговор е:          
+ 
+ 
+ CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            [ CHECK] (Age >= 20)
+            
+            
+            
+            
+            
+            
+            
+   Въпрос 17:  Напишете заявка за създаване на таблица customers, която да съдържа три колони, които са:
+
+                id - от тип цели числа, name - от тип текст с дължина 50 знака и birthday от тип дата.
+                
+                
+                
+    Правилният отговор е: 
+    
+    
+    
+    CREATE TABLE customers(
+
+    id INT(11) PRIMARY KEY,
+
+    name VARCHAR(50),
+
+    birthday DATE,
+
+);
+ 
+ 
+ 
+ 
+ 
+ Въпрос 18: Допишете следната заявка за таблица Persons, така че номера на човек да бъде уникален. Завката да дава коректен резултат. 
+
+CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+            
+            
+            
+     Правилният отговор е:    
+          
+     
+     
+            CREATE TABLE Persons(
+
+            PersonID int NOT NULL,
+
+            FirstName varchar(255) NOT NULL,
+
+            LastName varchar(255) NOT NULL,
+
+            Age int,
+
+            UNIQUE(ID) );
+            
+            
+            
+            
+            
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+            
+            
+
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
