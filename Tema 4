@@ -254,3 +254,349 @@ public class Scale<T> where T : IComparable<T>//2т
 прилага това действие, трябва да имат [общ корен] т.е. да
 бъдат производни на [един и същи клас].
 
+
+
+
+Въпрос 19 :  По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+Правилният отговор е: 
+
+
+
+
+using System;
+
+using System.Collections.Generic;
+
+using System.Linq;
+
+
+
+internal interface IIdentifiable
+
+{
+
+    string Id { get; }
+
+}
+
+
+
+internal interface IPersonable
+
+{
+
+    string Name { get; }
+
+    int Age { get; }
+
+}
+
+
+
+internal interface IBuyer
+
+{
+
+    void BuyFood();
+
+    int Food { get; }
+
+}
+
+
+
+internal abstract class Community : IIdentifiable, IPersonable, IBuyer
+
+{
+
+    public string Id { get; }
+
+    public string Name { get; }
+
+    public int Age { get; }
+
+    public int Food { get; protected set; }
+
+
+
+    protected Community(string id, string name, int age)
+
+    {
+
+        Id = id;
+
+        Name = name;
+
+        Age = age;
+
+    }
+
+
+
+    public abstract void BuyFood();
+
+
+
+    public override string ToString()
+
+    {
+
+        return $"ID:{Id} {GetType().Name} Name: {Name} Age {Age} ";
+
+    }
+
+}
+
+
+
+internal class Citizen : Community
+
+{
+
+    private string birthdate;
+
+
+
+    public Citizen(string id, string name, int age, string birthdate)
+
+        : base(id, name, age)
+
+    {
+
+        Birthdate = birthdate;
+
+    }
+
+
+
+    public string Birthdate { get; }
+
+
+
+    public override void BuyFood()
+
+    {
+
+        Food += 10;
+
+    }
+
+
+
+    public override string ToString()
+
+    {
+
+        return base.ToString() + $"Birthdate {Birthdate} Food: {Food}";
+
+    }
+
+}
+
+
+
+internal class Rebel : Community
+
+{
+
+    private string group;
+
+
+
+    public Rebel(string id, string name, int age, string group)
+
+        : base(id, name, age)
+
+    {
+
+        Group = group;
+
+    }
+
+
+
+    public string Group { get; }
+
+
+
+    public override void BuyFood()
+
+    {
+
+        Food += 5;
+
+    }
+
+
+
+    public override string ToString()
+
+    {
+
+        return base.ToString() + $"Group {Group} Food: {Food}";
+
+    }
+
+}
+
+
+
+internal class Program
+
+{
+
+    static void Main(string[] args)
+
+    {
+
+        int n = int.Parse(Console.ReadLine());
+
+        Dictionary<string, Community> community = new Dictionary<string, Community>();
+
+
+
+        for (int i = 0; i < n; i++)
+
+        {
+
+            string[] input = Console.ReadLine().Split();
+
+            Community entity = CreateEntity(input);
+
+            community.Add(input[0], entity);
+
+        }
+
+
+
+        string id = Console.ReadLine();
+
+        while (id != "End")
+
+        {
+
+            if (community.ContainsKey(id))
+
+            {
+
+                community[id].BuyFood();
+
+            }
+
+            id = Console.ReadLine();
+
+        }
+
+
+
+        int totalFood = community.Sum(v => v.Value.Food);
+
+        Console.WriteLine($"TotalFood: {totalFood}");
+
+    }
+
+
+
+    public static Community CreateEntity(string[] info)
+
+    {
+
+        Community entity = null;
+
+        string id = info[0];
+
+        if (id.StartsWith("R"))
+
+        {
+
+            entity = new Rebel(id, info[1], int.Parse(info[2]), info[3]);
+
+        }
+
+        else if (id.StartsWith("C"))
+
+        {
+
+            entity = new Citizen(id, info[1], int.Parse(info[2]), info[3]);
+
+        }
+
+        return entity;
+
+    }
+
+}
+
+
+
+
+
+
+
+Въпрос 20:  Имате абстрактен клас и обикновен клас. Открийте и свържете коя от характеристиките се отнася за абстрактния клас и коя за не абстрактен клас.
+
+
+
+
+Правилният отговор е:  
+
+
+Не можем да създаваме инстанции. [Абстрактен клас ]
+
+Може да има само абстрактни членове на класа. [За нито един от двата]
+
+Могат да дефинират методи без тяло (без имплементация). [Абстрактен клас ]
+
+Можем да създаваме инстанции. [Обикновен клас]
+
+Може да има само не-абстрактни членове на класа. [Обикновен клас]
+
+Не могат да дефинират методи без тяло (имплементация). [Обикновен клас]
+
+Съдържа ключовата дума abstract пред ключовата дума class. [Абстрактен клас ]
+
+Може да има абстрактни и не-абстрактни членове на класа. [Абстрактен клас ]
+
+Не съдържа ключовата дума abstract пред ключовата дума class. [Обикновен клас]
+
+
+
+
+
+
+Въпрос 21:  Открийте липсващите думи в текста:
+
+
+Правилният отговор е: 
+
+
+Възможността референция към [базов клас ] да сочи обект както от базовия, така и обект от някой от производните класове е в основата на 
+реализацията на [полиморфизма ] в езика C#.
+
+Кои от следните примери потвърждават това правило, ако имате следната йерархия class Cat : class Animal ?
+
+Cat cat  = new Animal(); [не]
+
+Animal animal = new Animal(); [да]
+
+Animal animal = new Cat(); [да]
+
+
+
+
+Въпрос 22:  Посочете по какъв начин указваме на даден метод от базовия клас, че искаме да презапишем неговото поведение.
+
+
+
+Правилният отговор е: Чрез ключовата дума virtual.
+
+
+
+
+
+
+
+
+
+
