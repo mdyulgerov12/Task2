@@ -1,1 +1,632 @@
+Въпрос 1:  Посочете кое действие от компонентния тест се случва в Assert фазата.
+
+Правилният отговор е: проверка на резултата от тестването
+
+
+
+Въпрос 2:  Какво действие активира клавиша F11 във Visual Studio?
+
+
+Правилният отговор е: Step over
+
+
+
+Въпрос 3: Посочете значението на абревиатурата MVC.
+
+
+Правилният отговор е: Model View Controller
+
+
+
+
+Въпрос 4: Какво стои зад буквата V в абревиатурата на архитектурния шаблон MVC?
+
+
+Правилният отговор е: View
+
+
+
+Въпрос 6: Демонстрирайте рефакториране на следния фрагмент от код, като зададате подходящо именуване и форматиране, ако и където това е необходимо:
+
+class tdi { //class for todo items
+
+public string _Name { get; set; }
+
+public string description { get; set; }
+
+public int ToDoListId { get; set; }
+
+}
+
+
+Правилният отговор е: 
+
+
+class ToDoItem{ //class for todo items
+
+public string Name { get; set; }
+
+public string Description { get; set; }
+
+public int ToDoListId { get; set; }
+
+}
+
+
+
+
+Въпрос 7: Изберете вярното твърдение.
+
+
+Правилният отговор е: Имената на класове трябва да започват с главна буква.
+
+
+
+
+Въпрос 8: Обяснете как си взаимодействат трите слоя на трислойната архитектура.
+
+
+ Правилният отговор е:  Слойевете се взаймодействат по следния начин:
+
+-Потребителя взаймодейства с презентационния слой, който изпраща заявките към слоя за бизнес логика.
+
+-Бизнес логиката обработва заявките, прилага бизнес логиката, след което комуникира със слоя за достъп до данни за промени или извличане на данни.
+
+-Слойът за достъп изпълнява заявките за извличане или запис от базата данни и връща резултата.
+
+-Бизнес логиката обработва получените данни и връща резултатите
+
+-Презентационня слой показва резултатите или предоставя обратна връзка.
+
+
+
+
+Въпрос 9: Откриване на грешки.Дебъгване  Problem 2 : множество инструкции
+
+
+Правилният отговор е:
+
+
+
+namespace Test2
+
+{
+
+  public class Program
+
+  {
+
+    static void Main(string[] args)
+
+    {
+
+      string opCode = Console.ReadLine();
+
+
+
+      while (opCode != "END")
+
+      {
+
+        string[] codeArgs = opCode.Split(' ');
+
+
+
+        long result = 0;
+
+        switch (codeArgs[0])
+
+        {
+
+          case "INC":
+
+            {
+
+              int operandOne = int.Parse(codeArgs[1]);
+
+              result = ++operandOne;
+
+              break;
+
+            }
+
+          case "DEC":
+
+            {
+
+              int operandOne = int.Parse(codeArgs[1]);
+
+              result = --operandOne;
+
+              break;
+
+            }
+
+          case "ADD":
+
+            {
+
+              int operandOne = int.Parse(codeArgs[1]);
+
+              int operandTwo = int.Parse(codeArgs[2]);
+
+              result = operandOne + operandTwo;
+
+              break;
+
+            }
+
+          case "MLA":
+
+            {
+
+              long operandOne = long.Parse(codeArgs[1]);
+
+              long operandTwo = long.Parse(codeArgs[2]);
+
+              result = (long)(operandOne * operandTwo);
+
+              break;
+
+            }
+
+        }
+
+
+
+        Console.WriteLine(result);
+
+        opCode = Console.ReadLine();
+
+
+
+      }
+
+    }
+
+  }
+
+
+Въпрос 10: Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+
+Правилният отговор е: 
+
+
+/////AxeTest.cs
+
+using NUnit.Framework;
+
+using System;
+
+
+
+namespace AttackSimulator.Test
+
+{
+
+    public class AxeTest
+
+    {
+
+    [Test]
+
+    public void AxeLosesDurabilityAfterAttack()
+
+    {
+
+
+
+      // Arrange
+
+      Axe axe = new Axe(10, 10);
+
+      Dummy dummy = new Dummy(10, 10);
+
+
+
+      // Act 
+
+      axe.Attack(dummy);
+
+
+
+      // Assert
+
+      Assert.AreEqual(9, axe.DurabilityPoints, "Axe Duraility does not change after attack.");
+
+
+
+    }
+
+        [Test]
+
+        public void BrokenAxeCantAttack()
+
+        {
+
+            // Arrange
+
+            Axe axe = new Axe(2, 0);
+
+            Dummy dummy = new Dummy(10, 10);
+
+
+
+            // Act 
+
+            axe.Attack(dummy);
+
+
+
+            // Assert
+
+            var ex = Assert.Throws<InvalidOperationException>(() => axe.Attack(dummy));
+
+            Assert.AreEqual(ex.Message, "Axe is broken.");
+
+        }
+
+    }
+
+}
+
+////DummyTest.cs
+
+using NUnit.Framework;
+
+using System;
+
+using System.Collections.Generic;
+
+using System.Linq;
+
+using System.Text;
+
+using System.Threading.Tasks;
+
+
+
+namespace AttackSimulator.Test
+
+{
+
+  class DummyTest
+
+  {
+
+    [Test]
+
+    public void DummyAxeLosesHealthAfterAttack()
+
+    {
+
+      // Arrange
+
+      Axe axe = new Axe(10, 10);
+
+      Dummy dummy = new Dummy(10, 10);
+
+
+
+      // Act
+
+      axe.Attack(dummy);
+
+
+
+      // Assert
+
+      Assert.AreEqual(0, dummy.Health, "Dummy Health Does Not Change After Attack.");
+
+    }
+
+
+
+    [Test]
+
+    public void DeadDummyThrowsExeption()
+
+    {
+
+      // Arrange
+
+      Axe axe = new Axe(10, 10);
+
+      Dummy dummy = new Dummy(1, 1);
+
+
+
+      // Act
+
+      axe.Attack(dummy);
+
+
+
+      // Assert
+
+      var ex = Assert.Throws<InvalidOperationException>(() => axe.Attack(dummy));
+
+      Assert.AreEqual(ex.Message, "Dummy is dead.");
+
+    }
+
+
+
+    [Test]
+
+    public void DeadDummyGivesExperience()
+
+    {
+
+      // Arrange
+
+      Axe axe = new Axe(10, 10);
+
+      Dummy dummy = new Dummy(1, 50);
+
+
+
+      // Act
+
+      axe.Attack(dummy);
+
+      // Assert
+
+      var ex = Assert.Throws<InvalidOperationException>(() => axe.Attack(dummy));
+
+      Assert.AreEqual(50, dummy.GiveExperience(), "Dead Dummy Does Not Gives Experiense.");
+
+    }
+
+
+
+    [Test]
+
+    public void LiveDummyDoesNotGivesExperiense()
+
+    {
+
+      // Arrange
+
+      Axe axe = new Axe(1, 100);
+
+      Dummy dummy = new Dummy(10, 50);
+
+
+
+      // Act
+
+      axe.Attack(dummy);
+
+
+
+      // Assert
+
+      var ex = Assert.Throws<InvalidOperationException>(() => dummy.GiveExperience());
+
+      Assert.AreEqual(ex.Message, "Target is not dead.");
+
+    }
+
+  }
+  
+  
+  
+  Въпрос 11: Посочете кое от следните действия НЕ е възможно с помощта на дебъгер?
+  
+  Правилният отговор е: Подчертаване на логически грешки в програма
+  
+  
+  
+  
+  Въпрос 12: Дайте пример за коректно именуване на компонентен тест, който проверява дали потребител получава грешка при опит за влизане с 
+            грешно потребителско име и парола
+            
+            
+   Правилният отговор е: ShouldReturnErrorWhenInvalidUsernameAndPasswordProvided
+   
+   
+   
+   Въпрос 13: Дайте пример за коректно именуване на компонентен тест, който проверява дали потребител влиза успешно с валидно потребителско име и парола.
+   
+   
+   Правилният отговор е:  ShouldLoginSuccessfullyWithValidUsernameAndPassword
+   
+   
+   
+   
+   
+   Въпрос 14: Демонстрирайте рефакториране на следния фрагмент от код, като зададате подходящо именуване и форматиране, ако и където това е необходимо:
+
+class tdl { //class for todo list
+
+public string _Name { get; set; }
+
+public string description { get; set; }
+
+public virtual List<ToDoItem> Items { get; set; }
+
+}
+   
+  
+  
+  Правилният отговор е:  
+  
+  
+  
+  class ToDoList { 
+
+public string Name { get; set; }
+
+public string Description { get; set; }
+
+public virtual List<ToDoItem> Items { get; set; }
+
+}
+
+
+
+Въпрос 15: Какво действие активира клавиша F10 във Visual Studio?
+
+
+Правилният отговор е: Step Into
+
+
+
+
+
+Въпрос 16: Посочете кое действие от компонентния тест се случва в Act фазата.
+
+
+Правилният отговор е: извървшане на действието за тестване
+
+
+
+
+
+Въпрос 17: Какво стои зад буквата M в абревиатурата на архитектурния шаблон MVC?
+
+
+
+Правилният отговор е: Model
+
+
+
+
+
+Въпрос 18: Дефинирайте понятието Контролер (Controller) от MVC концепцията.
+
+
+Правилният отговор е: Контролерът в MVC служи за обработка на заявките на потребителя към приложението
+
+
+
+
+Въпрос 19: Посочете кой програмен фрагмент няма нарушения във форматирането си.
+
+
+
+Правилният отговор е: Всички примери имат нарушения в правилата за форматиране
+
+
+
+
+
+Въпрос 20:  Problem 5 
+
+
+
+Правилният отговор е:
+
+
+
+
+namespace Test2
+
+{
+
+  public class Program
+
+  {
+
+    static void Main(string[] args)
+
+    {
+
+      string text = Console.ReadLine();
+
+      int jump = int.Parse(Console.ReadLine());
+
+      bool hasMatch = false;
+
+
+
+      for (int i = 0; i < text.Length; i++)
+
+      {
+
+        if (text[i] == 'p')
+
+        {
+
+          hasMatch = true;
+
+
+
+          int endIndex = i + jump + 1;
+
+
+
+          if (endIndex > text.Length)
+
+          {
+
+            endIndex = text.Length;
+
+          }
+
+
+
+          string matchedString = text.Substring(i, endIndex - i);
+
+          Console.WriteLine(matchedString);
+
+          i += jump;
+
+        }
+
+      }
+
+
+
+      if (!hasMatch)
+
+      {
+
+        Console.WriteLine("no");
+
+      }
+
+    }
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+   
+   
+   
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
 
