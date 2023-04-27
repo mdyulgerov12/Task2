@@ -1,1 +1,424 @@
+Въпрос 1: Посочете коя от следните заявки ще изведе всички записи от таблица departments и извежда първите два реда от таблицата.
+
+
+Правилният отговор е: SELECT * FROM departments WHERE department_id <=2
+
+
+
+Въпрос 2: Имате пример за създаване на процедура:
+
+
+
+Правилният отговор е:
+
+
+CREATE [PROCEDURE] [usp]_withdraw_money (account_id INT, money_amount DECIMAL)
+
+[BEGIN]
+
+  -- Transaction logic goes here.
+
+END
+
+
+
+
+Въпрос 3: Посочете какво прави клаузата FULL JOIN.
+
+
+Правилният отговор е:  FULL JOIN - Тази връзка връща записите, отговарящи на свързващото условие и също така несъвпадащите записи от лявата и от дясната таблица.
+
+
+
+Въпрос 4: Моля посочете вярното твърдение за съхранени процедури в език My SQL.
+
+
+Правилният отговор е: Могат да приемат входни параметри; Могат да връщат изходни резултати.
+
+
+
+Въпрос 5: Имате създадена съхранена процедура с параметър usp_select_employees_by_seniority(min_years_at_work INT). 
+          Моля да дефинирате заявка за извикване на процедурата, за да може да бъде използвана.
+
+
+
+Правилният отговор е: CALL usp_select_employees_by_seniority(15);
+
+
+Въпрос 6: Имате представена подзаявка за намиране служителите от отдел финанси и 
+          извеждане на всички колони от таблицата. Поставете липсващите думи, за да направите работещ код.
+
+
+
+Правилният отговор е:
+
+
+SELECT * FROM employees
+[WHERE] department_id [IN]
+
+  (
+
+   SELECT department_id
+    [FROM] departments
+
+    [WHERE] name = 'Finance'  );
+    
+    
+    
+    
+  Въпрос 7: Моля посочете вярното твърдение за посочените типове данни:
+  
+  
+  
+  Правилният отговор е: DOUBLE → тип данни за реални числа, Float → тип данни за реални числа, VARCHAR(M) → текстов тип данни
+  
+  
+  Въпрос 8:  Допишете следната заявка, така че да изведе като резултат служителите със заплата по-голяма от 50000 и да ги сортира в низходящ ред.
+
+            SELECT first_name, last_name, salary FROM employees
+            
+            
+    Правилният отговор е:
+    
+ SELECT first_name, last_name, salary FROM employees
+
+WHERE salary > 50000
+
+ORDER BY salary DESC;
+
+
+
+Въпрос 9:  Посочете действието на използваната връзка в следната заявка: 
+
+SELECT * FROM employees AS e
+
+ RIGHT OUTER JOIN departments AS d
+
+ ON e.department_id = d.department_id;
+ 
+ 
+ 
+ 
+ Правилният отговор е: Тази връзка връща записите, отговарящи на свързващото условие и също така несъвпадащите записи от таблица departments.
+
+
+
+Въпрос 10:  Дадена е дефиниция за транзакция.  Поставете липсващите думи в дефиницията. 
+
+
+
+Правилният отговор е:  Транзакциите гарантират пълнотата и цялостността на базата данни. Всички промени в транзакцията са  [временни].
+            Промените се съхраняват едва след изпълнението на [COMMIT]. По всяко време всички промени могат да се отменят чрез [ROLLBACK].
+            
+            
+            
+ Въпрос 11:  Имплементирайте код на заявка, която извежда колоните first_name, last_name и job_title от таблица 
+             employees и извежда само тези записи със заплата между 20000 и 30000.
+             
+             
+             
+  Правилният отговор е:
+  
+  
+  SELECT first_name, last_name, job_title
+
+FROM employees
+
+WHERE salary BETWEEN 20000 AND 30000;
+
+
+
+
+Въпрос 12:  Емате следната заявка. Посочете вярното твърдение за получения резултат от агрегиращата използвана функция след нейното изпълнение. 
+
+SELECT e.`department_id`,
+
+  AVG(e.`salary`) AS 'AvgSalary'
+
+FROM `employees` AS e
+
+GROUP BY e.`department_id`;
+
+
+
+Правилният отговор е: Намира средноаритметичната стойност на заплатите на служителите и преименува колоната.
+
+
+
+
+Въпрос 13:  Посочете коя от следните заявки ще изведе фамилия и заплата, като заплатата е в периода 20000 и 22000.
+
+
+Правилният отговор е: SELECT `last_name`, `salary`FROM `employees` WHERE `salary` BETWEEN 20000 AND 22000;
+
+
+
+Въпрос 14:  В посочения пример имате заявка за създаване на таблица persons с колони person_id, first_name, passport_id и salary. 
+            Моля избирете липсващите думи за всяка колона от таблицата.
+
+
+
+Правилният отговор е:
+
+
+CREATE TABLE persons(
+
+person_id  [INT] PRIMARY KEY,
+
+first_name [VARCHAR(50)],
+
+salary [DECIMAL(8,2)],
+
+passport_id [INT] UNIQUE,
+
+CONSTRAINT fk_persons_passports FOREIGN KEY(passport_id) REFERENCES passports(passport_id)
+
+);
+
+
+
+
+Въпрос 15:  Електрическите тротинетки се превърнаха в голям хит през последните няколко години.
+           В големите градове те са все по-предпочитан и удобен начин за транспорт.
+          Компания за отдаване под наем на електрически тротинетки има нужда от създаване на софтуер за дейността си.
+          Ваша отговорност е да изпълните заявки върху базата данни, която съдържа следните таблици:
+          
+          
+  
+  Правилният отговор е: 
+  
+  
+  
+  1//
+
+SELECT user_id, username, balance
+
+FROM users
+
+WHERE city_id = (select city_id from cities where name = 'Varna')
+
+ORDER BY balance Desc LIMIT 1;
+
+
+
+2//
+
+SELECT count(*) AS total_rents, c.name AS name 
+
+FROM rents AS r 
+
+INNER JOIN users AS u ON u.user_id = r.user_id 
+
+INNER JOIN cities AS c ON u.city_id=c.city_id 
+
+GROUP BY c.name, c.city_id
+
+ORDER BY total_rents DESC, c.city_id LIMIT 10;
+
+
+
+3//
+
+SELECT COUNT(*) AS total_rents, username FROM 
+
+rents AS r
+
+INNER JOIN users AS u ON r.user_id = u.user_id
+
+GROUP BY r.user_id
+
+ORDER BY COUNT(*) DESC, username ASC
+
+LIMIT 5;
+
+
+
+
+Въпрос 16:  Посочете коя от следните заявки ще изтрие записи от таблица projects, които са с начална дата 2006-01-01.
+
+
+Правилният отговор е: DELETE FROM projects WHERE start_date = '2006-01-01';
+
+
+
+
+Въпрос 17: Имате пример за създаване на функция:
+
+
+Правилният отговор е:
+
+
+CREATE [FUNCTION] [udf]_project_weeks (start_date DATETIME, end_date DATETIME)
+
+[RETURNS] INT
+
+BEGIN
+
+            // тяло на функцията
+
+END
+
+
+
+
+Въпрос 18:  Създайте заявка, която извежда първо име, фамилия и длъжност на служителите, които имат заплата между 20000 и 30000. Използвайте базата данни soft_uni.
+
+
+
+Правилният отговор е:
+
+
+SELECT first_name, last_name, job_title
+
+FROM employees
+
+WHERE salary BETWEEN 20000 AND 30000;
+
+
+
+Въпрос 19:  Трябва да създадете потребителска функция с параметри. 
+         Открийте липсващите думи под текста и ги поставете на правилното място, така че да получите коректно работещ код.
+
+
+
+Правилният отговор е:
+
+
+[CREATE] [FUNCTION] udf_project_weeks (start_date DATETIME, end_date DATETIME)
+
+RETURNS INT
+
+[BEGIN]
+
+            // тяло на функцията
+
+[END]
+
+
+
+
+Въпрос 20:  Във вашата база от данни Soft_uni имате създадена таблица Employees с 500 записа. 
+       Необходимо е да добавите нова колона с име salary. Напишете заявка за добавяне на колоната в таблица employees. 
+
+
+
+
+Правилният отговор е:  
+
+
+ALTER TABLE employees
+
+ADD salary DECIMAL;
+
+
+
+
+
+Въпрос 21:  Създайте база данни с името online_auction. Ще получите описания, с помощта на които ще създадете следните 5 таблици: 
+
+
+
+Заявка 1:
+
+SELECT p.id, p.name product_name, ps.first_name, ps.last_name, c.name city_name, c.country_name 
+
+FROM products p
+
+JOIN persons ps ON p.owner_id = ps.id
+
+JOIN cities c ON p.sold_city_id = c.id
+
+WHERE ps.first_name = 'Britni' AND c.country_name = 'Germany'
+
+ORDER BY p.id;
+
+
+
+Заявка 2:
+
+SELECT ps.id, ps.first_name, ps.last_name, c.name city_name, COUNT(p.id) product_count 
+
+FROM persons ps
+
+JOIN products p ON p.owner_id = ps.id
+
+JOIN cities c ON ps.city_id = c.id
+
+GROUP BY ps.id
+
+ORDER BY product_count DESC, ps.first_name
+
+LIMIT 10;
+
+
+
+
+
+Заявка 3:
+
+SELECT p.name product_name, c.name city_name, COUNT(b.product_id) bid_count, MIN(b.amount) min_amount, MAX(b.amount) max_amount
+
+FROM products p
+
+JOIN bids b ON p.id = b.product_id
+
+JOIN cities c ON c.id = p.sold_city_id
+
+WHERE c.country_name = 'Bulgaria'
+
+GROUP BY p.id
+
+ORDER BY bid_count DESC
+
+LIMIT 5;
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+             
+             
+             
+   
+ 
+ 
+
+
+
+
+
+    
+            
+            
+            
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
