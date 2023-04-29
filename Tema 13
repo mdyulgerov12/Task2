@@ -1,1 +1,450 @@
+Въпрос 1:  Кое от следните е характерно за Code first подхода?
+
+Правилният отговор е: Създава съответните таблици в БД следвайки тяхно описание чрез същностни класове (entity класове)
+
+
+
+Въпрос 2: Демонстрирайте създаване на клас, който съответства на следната таблица в БД:
+
+
+Правилният отговор е:
+
+
+class Book {
+
+[public int Id { get; set; }]
+
+[public string Title { get; set; }]
+
+[public string Author { get; set; }]
+
+[public double Price { get; set; }]
+
+[public int Quantity { get; set; }]
+
+}
+
+
+
+
+Въпрос 3:  Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+Правилният отговор е: 
+
+
+public class Country {
+
+    public int Id { get; set; }
+
+    public string Country { get; set; }
+
+    public DateTime LastUpdate { get; set; }
+
+}
+
+public class City {
+
+    public int Id { get; set; }
+
+    public string City { get; set; }
+
+    public virtual Country Country { get; set; }
+
+    public int CountryId { get; set; }
+
+    public DateTime LastUpdate { get; set; }
+
+}
+
+public class Address {
+
+    public int Id { get; set; }
+
+    public string Address { get; set; }
+
+    public string Address2 { get; set; }
+
+    public string District { get; set; }
+
+    public virtual City City { get; set; }
+
+    public int CityId { get; set; }
+
+    public string PostalCode { get; set; }
+
+    public string Phone { get; set; }
+
+    public string Location { get; set; }
+
+    public DateTime LastUpdate { get; set; }
+
+}
+
+
+
+
+
+Въпрос 4: Трябва да създадете метод, който проверява дали дадено потребителско име съществува или не.
+        Посочете кое е най-подходящото име за него, което спазва добрите практики за именуване на методи в .NET.
+        
+        
+ Правилният отговор е: UsernameInUse
+ 
+ 
+ 
+ Въпрос 5: Посочете грешното твърдение за ORM технологиите.
+ 
+ 
+ 
+ Правилният отговор е: ORM технологиите имат по-добра производителност от чисти SQL заявки 
+ 
+ 
+ 
+ 
+ Въпрос 6: Посочете кое от следните е ORM система.
+ 
+ 
+ 
+ Правилният отговор е:   EntityFrameworkCore, Microsoft SQL Server
+ 
+ 
+ 
+ 
+ Въпрос 7:  Обяснете предназначението на контролера в MVC и ASP.NET Core.
+  
+ 
+  
+ Правилният отговор е: 
+MVC (model – view – control) предоставя различни видове и начини за това как да бъде изграден даден модел
+В ASP.NET Core MVC контролерът е обикновен C# клас, който наследява от Microsoft.AspNetCore.Mvc.Controller абстрактен базов клас .
+По подразбиране ASP.NET Core MVC проект съдържа поне един контролер - HomeController
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ Въпрос 8:  Обяснете действието на следния фрагмент:
+
+	toDoList.CreatedAt = DateTime.Now;
+  _context.Add(toDoList);
+  await _context.SaveChangesAsync();
+  
+  
+  
+  
+ Правилният отговор е: 
+ 
+Даденият фрагмент код служи за създаване на нов обект от тип ToDoList в базата данни. Първото действие е да се зададе текущата дата и час на свойството CreatedAt на
+ToDoList обекта, за да се запази информация за времето на създаване на записа.
+След това се извиква метода Add() на DbSet-ът ToDoLists, който добавя новия обект към контекста на базата данни,
+като по този начин се приготвя за записване в базата данни.
+След това се извиква асинхронният метод SaveChangesAsync() на контекста,
+който записва данните в базата данни, като този метод се изчаква да завърши, преди да продължи изпълнението на кода.
+Така, когато този фрагмент се изпълни, създава се нов обект от тип
+ToDoList в базата данни, като се запазва информация за времето на създаване на записа и се записва в базата данни, като
+тези промени се запазват и потвърждават чрез SaveChangesAsync() метода.
+  
+ 
+ 
+ 
+ 
+ 
+ Въпрос 9: Посочете кой от следните примери е нарушение на добрите практики при използването на WindowsForms като графичен потребителски интерфейс за приложение.
+ 
+ 
+ Правилният отговор е: имената на контролите от форма са оставени по подразбиране на label1, button1 и т.н.
+ 
+ 
+ 
+ Въпрос 10:  Посочете какво наричаме „магически стойности" в програмирането.
+ 
+ 
+ 
+  Правилният отговор е: низове или числени стойности, които са поставени директно в кода
+  
+  
+  
+  
+  Въпрос 11:  Посочете кое от следните НЕ Е ORM система.
+  
+  
+  
+  Правилният отговор е: Microsoft SQL Server
+  
+  
+  
+  
+  
+  
+  Въпрос 12: Посочете как се нарича типа в EntityFrameworkCore, който съдържа в себе си записите от дадена таблица от база данни.
+  
+  Правилният отговор е: DbSet
+  
+  
+  
+  
+  Въпрос 13:  Обяснете действието на следния фрагмент:
+
+toDoList.ModifiedAt = DateTime.Now;
+_context.Update(toDoList);
+await _context.SaveChangesAsync();
+
+
+
+Правилният отговор е: 
+
+Кода променя ModifiedAt свойството на ToDoList обекта на текущата дата и време, след което 
+прави актуализация на този обект в базата данни, използвайки метода Update() на DbContext-a.
+Използва се асинхронен метод на контекста SaveChangesAsync, за да се запазят промените в базата данни
+
+
+
+
+Въпрос 14: Обяснете защо примерния програмен фрагмент няма да доведе до изтриване на данни от базата данни:
+
+public void DeleteList(ToDoList toDoList)
+
+{
+
+    _context.ToDoList.Remove(toDoList);
+
+}
+
+
+
+Правилният отговор е:
+
+
+public void DeleteList(ToDoList toDoList)
+
+{
+
+    _context.ToDoList.Remove(toDoList);
+
+}
+
+Няма да се изтрият данни от базата данни, защото не е извикана командата _context.SaveChanges(), за да се запишат промените в базата данни.
+
+Ако не се извика командата промените в базата данни няма да си останат .
+
+Ето поправения код:
+
+public void DeleteList(ToDoList toDoList)
+
+{
+
+    _context.ToDoList.Remove(toDoList);
+
+    _context.SaveChanges();
+
+}
+
+
+
+Въпрос 16:  Обяснете предназначението на модела в MVC и ASP.NET Core.
+
+
+
+
+Правилният отговор е:
+
+Моделът в MVC и ASP.NET Core представлява обект или клас, който съдържа данните и логиката на приложението.
+Той предоставя обобщена репрезентация на данните, която може да се използва от контролерите и изгледите за да се извършват операции с тях.
+Моделите могат да бъдат използвани за съхраняване на данни, получени от базата данни, като също така могат да съдържат и бизнес логиката на приложението,
+като валидацията на данни или логиката за изпълнение на операции.
+
+
+Въпрос 17: Демонстрирайте създаване на клас, който съответства на следната таблица в БД:
+
+
+
+Правилният отговор е:
+
+class Person {
+
+[public int Id { get; set; }]
+
+[public string FirstName { get; set; }]
+
+[public string MiddleName { get; set; }]
+
+[public string LastName { get; set; }]
+
+[public DateTime BirthDate { get; set; }]
+
+[public int CityId { get; set; }]
+
+}
+
+
+
+Въпрос 18:  Демонстрирайте създаване на ViewModel за Book със следните полета:
+
+Id
+
+Title (заглавие, максимум 50 знака, задължително)
+
+Description (описание, максимум 255 знака, не е задължително)
+
+AuthorName (име на автор, максимум 80 знака, задължително)
+
+
+
+
+Правилният отговор е: 
+
+
+public class BookViewMoDel
+
+{
+
+public int Id{get; set;}
+
+[MaxLength(50, ErrorMessage = "Title can have 50 characters")]
+
+public string Title{get; set;}
+
+[MaxLength(255, ErrorMessage = "Title can have 255 characters")]
+
+public string Description{get; set;}
+
+public int Book {get; set;}
+
+public  int AuthorName (get;set;} = "can have 80 characters")]
+
+}
+
+
+
+Въпрос 19:  Пример: По време на теоретичния изпит се предоставя непълен/неработещ/некоректен програмен
+
+фрагмент. Предоставеният фрагмент да се приведе в работещ вид.
+
+
+Правилният отговор е: 
+
+public class City {
+
+    public int Id { get; set; }
+
+    public string Name { get; set; }
+
+}
+
+
+
+public class User {
+
+    public int Id { get; set; }
+
+    public string Username { get; set; }
+
+    public string Password { get; set; }
+
+    public string FirstName { get; set; }
+
+    public string LastName { get; set; }
+
+    public double Balance { get; set; }
+
+    public virtual City City { get; set; }
+
+    public int CityId { get; set; }
+
+    public DateTime RegisterDate { get; set; }
+
+}
+
+public class Scooter {
+
+     public int Id { get; set; }
+
+     public string Model { get; set; }
+
+     public string GpsPosition { get; set; }
+
+     public bool IsTaken { get; set; }
+
+}
+
+public class Rent {
+
+    public int Id { get; set; }
+
+    public virtual User User { get; set; }
+
+    public int UserId { get; set; }
+
+    public virtual Scooter Scooter { get; set; }
+
+    public int ScooterId { get; set; }
+
+    public DateTime StartDate { get; set; }
+
+    public DateTime EndDate { get; set; }
+
+    public bool IsCompleted { get; set; }
+
+}
+
+
+
+
+
+
+Въпрос 20: Посочете какво означава абривиатурата ORM:
+
+
+Правилният отговор е: Object Relational Mapping
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
 
