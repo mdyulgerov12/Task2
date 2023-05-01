@@ -1,1 +1,796 @@
+Въпрос 1:  Решете правилно задачата. Имате дадени парчета от код, поставете отделните парчета така, че да получите правилно работещ код,
+който трябва да прочете данните от един файл и да ги копира в друг.
+
+
+Правилният отговор е:
+
+[using (var reader = new StreamReader("../../../Program.cs")) {]
+
+[using (var writer = new StreamWriter("../../../Copy.cs")) {]
+
+[string line = reader.ReadLine();]
+
+[while (line != null) {]
+
+[writer.WriteLine(line);]
+
+[line = reader.ReadLine();]
+
+[} } }]
+
+
+
+
+Въпрос 2:  Направете сравнение между IEnumerable и IEnumerator, като поставите липсващите думи в текста:
+
+
+Правилният отговор е:
+
+IEnumerable се използва за [generic интерфейс], но IEnumerator се използва за [non‑generic интерфейс].
+IEnumerable има [само един метод], докато IEnumerator има [само два метода].
+IEnumerable [може да върне IEnumerator]. IEnumerator [не може да върне IEnumerable].
+
+
+
+Въпрос 3:  Посочете кой от изброените класове е базовия клас за потоците в C#.
+
+
+Правилният отговор е: Stream
+
+
+
+Въпрос 4:  Имате даден клас Person:
+
+
+Правилният отговор е:
+
+
+///Person.cs
+
+private string name;
+        private int age;
+        private string city;
+ 
+        public Person(string name, int age, string city)
+        {
+            Name = name;
+            Age = age;
+            City = city;
+        }
+ 
+        public string Name
+        {
+            get { return name; }
+            private set { name = value; }
+        }
+        public int Age
+        {
+            get { return age; }
+            private set { age = value; }
+        }
+        public string City
+        {
+            get { return city; }
+            private set { city = value; }
+        }
+
+
+
+//Program.cs
+
+
+List<Person> people = new List<Person>();
+ 
+            string cmd = Console.ReadLine();
+ 
+            while (!cmd.Equals("END"))
+            {
+                string[] info = cmd.Split();
+                Person person = new Person(info[0], int.Parse(info[1]), info[2]);
+                people.Add(person);
+ 
+                cmd = Console.ReadLine();
+            }
+ 
+            int n = int.Parse(Console.ReadLine());
+ 
+            Person p = people[n - 1];
+            int equalsPeopleCount = 0;
+            int notEqualsPeoplesCount = 0;
+ 
+            for(int i = 0; i < people.Count; i++)
+            {
+                if(i == n - 1)
+                {
+                    continue;
+                }
+                if(people[i].CompareTo(p) == 0)
+                {
+                    equalsPeopleCount++;
+                }
+                else
+                {
+                    notEqualsPeoplesCount++;
+                }
+            }
+ 
+              Console.WriteLine(equalsPeopleCount == 0 ? "No matches!" :
+            $"{equalsPeopleCount} {notEqualsPeoplesCount} {people.Count}");
+
+
+
+
+
+Въпрос 5:  Дайте пример за функция, която проверява дадено цяло число X дали е четно или нечетно. 
+След изпълнението на функцията, на конзолата да се отпечата като резултат само Even или Odd.
+
+
+Правилният отговор е: 
+
+Func<int, bool> oddOrEven = (x) => x % 2 == 0;
+
+Console.WriteLine(oddOrEven(5) ? "Even" : "Odd");
+
+
+
+
+
+Въпрос 6:  Напишете програма на C#, която да дефинира делегат, който може да приема метод, който сумира две реални числа. 
+Накрая резултатът да се отпечата на конзолата.
+
+
+Правилният отговор е: 
+
+public delegate double SumDelegate(double firstNumber, double secondNumber);
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            SumDelegate del = new SumDelegate(Sum);
+            Console.WriteLine(del(2.5, 3.14));
+        }
+
+        private static double Sum(double firstNumber, double secondNumber)
+        {
+            return firstNumber + secondNumber;
+        }
+    }
+    
+    
+    
+    Въпрос 7: Обяснете следния фрагмент от код с думи:
+
+int[] nums = { 1, 2, 3, 4, 5, 6 };
+
+int[] otherNums = { 7, 8, 9, 0 };
+
+nums = nums.Concat(otherNums);
+
+Console.WriteLine(string.Join(", ", nums));
+
+В полето запишете ред по ред какво прави кода и какво се очаква да получим като резултат.
+
+
+
+Правилният отговор е: 
+
+Инициализираме масив от цели числа nums и друг масив от цели числа otherNums.
+
+Конкатенираме (или слепваме) двата масива - масив otherNums се "залепя" след масива nums.
+
+Отпечатваме на конзолата елементите от масива на един ред разделени със ", ". 
+
+Очакван резултат:
+
+1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+
+
+
+
+
+Въпрос 8:  Посочете кое от изброените твърдения е вярно за работата на изключенията в C#.
+
+
+
+Правилният отговор е: Ако по време на изпълнението на програмата някой от извикваните методи неочаквано хвърли изключение, 
+                     то нормалният ход на програмата се преустановява. 
+                     
+                     
+                     
+Въпрос 9:  Имате даден клас Book със следните членове на класа. Авторите може да са анонимни, един или повече. Book трябва да има само един конструктор!
+
+
+Правилният отговор е:
+
+//Program.cs
+
+Book bookOne = new Book("Animal Farm", 2003, "George Orwell");
+Book bookTwo = new Book("The Documents in the Case", 2002, "Dorothy Sayers", "Robert Eustace");
+Book bookThree = new Book("The Documents in the Case", 1930);
+ 
+Library library = new Library(bookOne, bookTwo, bookThree);
+ 
+foreach (var book in library)
+{
+Console.WriteLine(book);
+
+}
+
+
+
+//Library.cs
+
+private List<Book> books;
+ 
+        public Library()
+        {
+            this.books = new List<Book>(books);
+        }
+ 
+        public IEnumerator<Book> GetEnumerator()
+        {
+            foreach (var book in this.books)
+            {
+               
+            }
+        }
+ 
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+//Book.cs
+
+private string title;
+        private int year;
+        public Book(string title, int year)
+        {
+            this.Title = title;
+            this.Year = year;
+            this.Authors = authors;
+        }
+        public string Title
+        {
+            get { return title; }
+            private set { title = value; }
+        }
+        public int Year
+        {
+            get { return year; }
+            private set { year = value; }
+        }
+        public IReadOnlyList<string> Authors { get; private set; }
+ 
+        public override string ToString()
+        {
+            return $"{this.Title} - {this.Year} Authors: {string.Join(", ", this.Authors)}";        }
+
+
+
+Въпрос 10:  Посочете какво представлява и какво прави Current() от интерфейса IEnumerator:
+
+
+Правилният отговор е: Current е свойството, което връща елемента от колекцията, който е на текущата позиция на итератора.
+
+
+
+Въпрос 11:  Имате даден следният програмен фрагмент:
+
+
+Правилният отговор е: 
+
+
+//Program.cs
+
+  try
+
+            {
+
+                string name = Console.ReadLine();
+
+                int age = int.Parse(Console.ReadLine());
+
+                Person person = new Person(name, age);
+
+            }
+
+            catch (ArgumentNullException ex)
+
+            {
+
+                Console.WriteLine(ex.Message);
+
+            }
+
+
+
+//Person.cs
+
+
+
+ private string firstName;
+
+        private int age;
+
+
+
+        public Person(string firstName, int age)
+
+        {
+
+            FirstName = firstName;
+
+            Age = age; ////
+
+        }
+
+
+
+        public string FirstName
+
+        {
+
+            get { return firstName; }
+
+            private set
+
+            {
+
+                if (string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
+
+                {
+
+                    throw new ArgumentNullException("value", "The first name cannot be null or empty");
+
+                }
+
+                firstName = value;
+
+            }
+
+        }
+
+
+
+        public int Age
+
+        {
+
+            get { return age; } /////
+
+            private set
+
+            {
+
+                if (value < 0 || value > 120)
+
+                {
+
+                    throw new ArgumentOutOfRangeException("value", "Age should be in the range [0..120]");
+
+                }
+
+                age = value;
+
+            }
+
+        }
+        
+        
+        
+Въпрос 12:  На конзолата ще ви бъдат подадени цели числа записани на един ред и разделени с интервал. Например: 5 7 12 56 24 3 8 
+
+Напишете собствена функция на C#, която да намира сумата на тези числа. 
+
+Накрая отпечатайте сбора на числата.
+
+
+
+Правилният отговор е: 
+
+ string input = Console.ReadLine();
+            int[] nums = input.Split().Select(int.Parse).ToArray();
+            Func<int[], int> sum = (x) =>
+            {
+                int sum = 0;
+                foreach (var item in x)
+                {
+                    sum += item;
+                }
+                return sum;
+            };
+            Console.WriteLine(sum(nums));
+            
+            
+            
+            
+ 
+ Въпрос 13: Напишете програма, която въвежда  цели числа разделени с  ", ". Изведете  четните числа в множеството, сортирани в низходящ ред. 
+
+Изберете какъв тип на структури от данни ще използвате за решаване на този проблем. Използвайте функционален програмен филтър, сортирайте и отпечатайте на 
+конзолата колекцията от числа на един ред разделени с ", ".
+
+За примерни входни/изходни данни ползвайте следните таблици:
+
+
+Правилният отговор е: 
+
+List<int> list = Console.ReadLine()
+                .Split(", ", StringSplitOptions.RemoveEmptyEntries)
+                .Select(int.Parse)
+                .Where(x => x % 2 == 0)
+                .OrderByDescending(x => x)
+                .ToList();
+
+            Console.WriteLine(string.Join(", ", list));
+
+
+
+Въпрос 14:  Напишете програма, която изпълнява някои математически операции върху дадена колекция. На първия ред са дадени списък от числа. 
+На следващите редове се подават различни команди, които трябва да се прилагат за всички числа в списъка:
+
+·        "add"-> добави 1 към всяко число;
+
+·        "multiply"-> умножава всяко число по 2;
+
+·        "subtract"-> изважда 1 от всяко число;
+
+·        "print"-> извежда колекцията.
+
+·        Входът ще приключи с команда "end".
+
+·        Използвайте функции.
+
+
+Правилният отговор е: 
+
+
+//Program.cs
+
+List<int> numbers = Console.ReadLine()
+
+                .Split()
+
+                .Select(int.Parse)
+
+                .ToList();
+
+ 
+
+            string cmd = Console.ReadLine();
+
+ 
+
+            while (!cmd.Equals("end"))
+
+            {
+
+                switch (cmd)
+
+                {
+
+                    case "add":
+
+                        numbers = numbers.Select(addition).ToList();
+
+                        break;
+
+                    case "multiply":
+
+                        numbers = numbers.Select(multiplication).ToList();
+
+                        break;
+
+                    case "subtract":
+
+                        numbers = numbers.Select(subtraction).ToList();
+
+                        break;
+
+                    case "print":
+
+                        foreach (var item in numbers)
+
+                        {
+
+                            print(item);
+
+                        }
+
+                        Console.WriteLine();
+
+                        break;
+
+                }
+
+ 
+
+                cmd = Console.ReadLine();
+
+            }
+            
+            
+            
+            
+   Въпрос 15:  Напишете програма, която филтрира списък с имена по тяхната дължина. На първия ред ще ви бъде дадено цяло число n, представляващо дължина на име. 
+   На втория ред ще ви бъде дадени някои имена като символни низове, разделени с интервал.
+Напишете функция, която филтрира само имената, чиято дължина е по-малка или равна на n. И функция, която отпечатва имената.
+
+Използвайте ваши собствени функции!
+
+За ваше улеснение ви е предоставен код, който обаче е грешен/непълен. Вашата задача е да откриете и поправите грешките в кода, така че той да работи правилно!
+
+
+
+Правилният отговор е: 
+
+  int length = int.Parse(Console.ReadLine());
+
+            List<string> names = Console.ReadLine().Split().ToList();
+
+
+
+            foreach (var item in names)
+
+            {
+
+                if (item.Length <= length)
+
+                {
+
+                    Console.WriteLine(item);
+
+                }
+
+            }
+            
+            
+            
+
+
+Въпрос 16:  Решете правилно задачата. Имате дадени парчета от код, поставете отделните парчета така, 
+че да получите правилно работещ код, който трябва да прочете данните от един файл и да ги копира в друг.
+
+
+
+
+Правилният отговор е:
+
+
+[using (var source = new FileStream("../../../Image.jpg", FileMode.Open)) {]
+
+[using (var destination = new FileStream("../../../ImageCopy.jpg", FileMode.Create)) {]
+
+[byte[] buffer = new byte[1024];]
+
+[ while (true) {]
+
+[int readBytes = source.Read(buffer, 0, buffer.Length);]
+
+[if (readBytes == 0) break;]
+
+[destination.Write(buffer, 0, readBytes);]
+
+[} } }]
+
+
+
+Въпрос 17:  Обяснете следния фрагмент от код с думи:
+
+int[] nums = { 1, 2, 3, 4, 5, 6};
+
+nums = nums.Reverse();
+
+Console.WriteLine(string.Join(", ", nums));
+
+В полето запишете ред по ред какво прави кода и какво се очаква да получим като резултат.
+
+
+
+Правилният отговор е:
+
+
+Инициализираме масив от цели числа.
+
+Обръщаме подредбата на числата (отзад-напред) с  (nums.Reverse) и запазваме новата подредба на масива nums.
+
+Отпечатваме на конзолата елементите от масива на един ред разделени със ", ". 
+
+Очакван резултат: 6, 5, 4, 3, 2, 1
+
+
+
+Въпрос 18:  Имате следния код:
+
+        public List<int> CreateList(int item, int count)
+        {
+            List<int> list = new List<int>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(item);
+            }
+        }
+
+ Модифицирайте кода,така че методът да работи с всякакъв тип данни.
+
+
+
+
+Правилният отговор е:
+
+public List<T> CreateList<T>(T item, int count)
+        {
+            List<T> list = new List<T>();
+            for (int i = 0; i < count; i++)
+            {
+                list.Add(item);
+            }
+            return list;
+        }
+
+
+
+Въпрос 19:  Дефинирайте понятието функция, като попълните липсващите думи в текста.
+
+Правилният отговор е:
+
+Функцията е [специално отношение], където на [всички входни данни] има [еднозначен изход].
+
+
+
+
+Въпрос 20: Имате даден следния програмен фрагмент:
+
+int[] nums = { 1, 2, 3, 4, 5, 6 };
+nums = nums blank .ToArray();
+
+Коя от следните LINQ заявки и какъв ламбда израз ще използвате, за да филтрирате колекцията, така че тя да съдържа само нечетни числа?
+
+
+Правилният отговор е:
+
+int[] nums = { 1, 2, 3, 4, 5, 6 };
+nums = nums[.Where(num => num % 2 != 0)].ToArray();
+
+
+
+Въпрос 21:  Имате даден следния програмен фрагмент:
+
+int[] nums = { 11, 99, 33, 55, 77, 44, 66, 22, 88 };
+
+nums = nums blank .ToArray();
+
+
+
+
+Правилният отговор е:
+
+
+int[] nums = { 11, 99, 33, 55, 77, 44, 66, 22, 88 };
+
+nums = nums[.OrderBy(x => x)].ToArray();
+
+
+
+Въпрос 22:  Имате следното парче код: List<int> list = List<int> () {1 2 3 4 5 6};
+
+
+Правилният отговор е: На конзолата ще се отпечатат всички четни числа. 2 4 6
+
+
+
+
+Въпрос 23:  Обяснете какво ще се случи, ако потребителя напише в конзолата 123. Също така какво ще се случи, ако потребителя реши да въведе Hello.
+
+
+Правилният отговор е:
+
+Ако потребителя въведе цяло число, това число ще се отпечата на конзолата и изпълнението на програмата се прекратява. 
+Когато потребителя въведе вход на конзолата различен от цяло число, програмата ще прихване изключението FormatException и на конзолата ще 
+се отпечата съобщение за грешка Input string was not in a correct format.
+Програмата се изпълнява докато потребителя въведе цяло число. 
+
+
+Въпрос 24: Дефинирайте какво представляват Lambda изразите и какъв е техният синтаксис, като попълните липсващите думи в текста.
+
+
+Правилният отговор е:
+
+
+Ламбда изразите представляват [анонимни функции], които съдържат изрази или последователност от оператори. 
+Всички ламбда изрази използват ламбда оператора [=>], който може да се чете като "отива в".
+Лявата страна на ламбда оператора определя [входните параметри], а дясната страна представлява [израз или последователност от оператори], 
+която работи с [входните параметри] на [анонимната функция] и евентуално връща някакъв резултат.
+
+Ламбда синтаксис: [(параметри) => {тяло}]
+
+
+Въпрос 25:  Обяснете какво ще се случи и защо, ако потребителя въведе числото 2147483648: 
+
+Правилният отговор е:
+
+Ако потребителя въведе числото 2147483648 програмата ще хвърли изключение от типа System.OverflowException със следното съобщение 
+за грешка: Value was either too large or too small for an Int32. 
+Това се получава така, защото липсва catch клауза за прихващане на изключение от този тип.
+
+
+
+Въпрос 26:  Посочете, кое от дадените твърдения е вярно за потоците в C#. Трябва да изберете вярно или невярно от падащото меню срещу всяко твърдение.
+
+Правилният отговор е:
+
+
+Потоците се използват, когато програмата трябва да прочете или запише данни от или във външен източник на данни. [Вярно]
+
+Потокът е наредена последователност от байтове. [Вярно]
+
+Тези байтове се изпращат един след друг и могат да се получават в ред различен от този в който са били изпратени. [Невярно]
+
+Потоците осигуряват последователен достъп до своите елементи. [Вярно]
+
+
+Потоците трябва да се отворят преди употреба и да се затворят накрая. [Вярно]
+
+Можем да манипулираме подредбата на данните в потока. [Невярно]
+
+
+
+
+
+Въпрос 27:  Направете сравнение между двата интерфейса IComparable и IComparer, като изберете липсващите думи в текста:
+
+
+Правилният отговор е:
+
+Интерфейсът IComparable<T> казва [„Аз съм нещо сравнимо“] и [дава метод за сравняване на два обекта].
+Интерфейсът IComparer<T> казва [„Аз мога да сравнявам“] и [предоставя начин за промяна на реда на сортиране на колекция].
+
+
+Въпрос 28:  Формулирайте правилната дефиниция за IEnumerator, като поставите липсващите думи в текста:
+
+
+Правилният отговор е:
+
+
+Предоставя [последователно, еднопосочно обхождане на колекция от произволен тип].
+IEnumerator има следните методи: [Reset();, MoveNext();].
+IEnumerator притежава свойството: [Current();].
+След като имплементираме методите и свойството, можем да използваме [foreach() цикъл] за нашите User Defined Classes.
+
+
+
+Въпрос  29: Имате даден следния програмен фрагмент:
+
+int[] nums = { 1, 2, 2, 3, 4, 5, 6, -2, 2, 0, 15, 3, 1, 0, 6 };
+
+nums = nums blank .ToArray();
+
+
+
+
+Правилният отговор е:
+
+
+[.Distinct()
+
+
+
+Въпрос 30:  Опишете какво представляват референциите към функции/методи в C#, като поставите липсващите думи в текста:
+
+
+
+Правилният отговор е:
+
+
+Ламбда функциите могат да бъдат записани в променливи от тип [делегат]. [Делегатите ] представляват специален тип [променливи], които съдържат [функции].
+Типовете Func и Action са [generic ] и съдържат: на последна позиция [типа на връщаната стойност], а на първите позиции се задават [типовете на параметрите] на 
+функциите. Променливите от тези типове са [референции] към функции. 
+
+
+
+
+
+
+
 
