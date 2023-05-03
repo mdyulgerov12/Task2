@@ -1,52 +1,583 @@
+Въпрос 1: Демонстрирайте как бихте използвали статичен член от даден клас в C#.
+
+Имате статичен клас (например Mathematics), който има статичен метод за събиране на две числа. 
+
+Как бихте извикали този статичен метод в класа Program.cs, за да проверите колко е сбора на числата 5 и 6 и да отпечатате стойността на конзолата?? 
+
+
+Верен отговор:  int sum = Mathematics.Add(5, 6);
+
+
+
+Въпрос 2:  Даден е следния програмен фрагмент. Открийте грешките и запишете правилния код.
+
+
+
+public Dog
+    {
+        private string name;
+        private int age;
+
+        private Dog(string, int name)
+        {
+            Name = name;
+            Age = age;
+        }
+
+        public string Name
+        {
+            get { return Name; }
+            private set { name = value; }
+        }
+        public int age
+        {
+            get { return age; }
+            private set { age = value; }
+        }
+    }
+
+
+
+    Верен отговор: 
+    
+    public class Dog
+{
+    private string name;
+    private int age;
+
+    private Dog(string name, int age)
+    {
+        this.name = name;
+        this.age = age;
+    }
+
+    public string Name
+    {
+        get { return name; }
+        private set { name = value; }
+    }
+
+    public int Age
+    {
+        get { return age; }
+        private set { age = value; }
+    }
+}
+
+
+Въпрос 3:  Дайте примерен код на C# за метод само за четене на стойността на едно свойство. (Например свойството Age). Спазвайте правилната енкапсулация на данните!
+    
+    
+     Верен отговор: 
+    
+    public class Person
+{
+    private int age;
+
+    public int Age
+    {
+        get { return age; }
+    }
+}
+
+
+
+
+Въпрос 4:  Имате създаден клас училище, за да можете да създавате обаче училища с тяхното име и адрес ви е необходим конструктор.
+
+Дайте пример за дефиниране на конструктор в C#, който да създава различни училища с подадени име и адрес като параметри.
+    
+    
+    
+   Верен отговор:  
+   
+    
+   public class School
+{
+    public string Name { get; private set; }
+    public string Address { get; private set; }
+
+    public School(string name, string address)
+    {
+        Name = name;
+        Address = address;
+    }
+} 
+    
+    
+    
+ Въпрос 5:  Дайте примерен код за метод написан на C#, който да върне сумата на всички цели числа от подаден масив.   
+    
+    
+    
+   Верен отговор:  
+   
+   
+   public int SumArray(int[] arr)
+{
+    int sum = 0;
+    for (int i = 0; i < arr.Length; i++)
+    {
+        sum += arr[i];
+    }
+    return sum;
+}
+    
+    
+
+Въпрос 6:  Дефинирайте за кого ще е видимо поле/метод в C#, ако то е с модификатор за достъп public?
+
+
+Верен отговор:  
+
+Полетата и методите, декларирани с модификатора за достъп "public" в C#, ще бъдат видими за 
+всички други класове и обекти в текущата програма или във външни библиотеки. Това означава, че тези полета и методи могат да бъдат достъпени от 
+всяко място в програмата, където е видима съответната инстанция на класа.
+
+
+
+Въпрос 7:  В C# като статични могат да бъдат декларирани: 
+
+
+Верен отговор: Полета, свойства и методи.
+
+
+Въпрос 8:  Обяснете какво правят т.нар setters в C#:
+
+
+Верен отговор: 
+
+Setters в C# са методи, които позволяват задаване на стойности на приватни полета в класовете. Те позволяват установяване на стойности на 
+приватни полета, които не могат да бъдат достъпени директно отвън класа, като за тази цел се използва синтаксисът за присвояване "=".
+Setters в C# се дефинират като част от property-та (свойства) на даден клас. Свойствата са членове на класа, които обвиват едно или повече 
+полета в класа и предоставят публичен интерфейс за достъп до тези полета.
+За да се дефинира setter на свойство в C#, се използва ключовата дума "set".
+
+
+
+Въпрос  9:  Дефиниране на клас BankAccount (банкова сметка)
+
+
+Верен отговор: 
+
+
+public BankAccount(int id, decimal balance)
+{
+    this.id = id;
+    this.balance = balance;
+}
+
+public int Id
+{
+    get { return this.id; }
+    private set { this.id = value; }
+}
+
+public decimal Balance
+{
+    get { return this.balance; }
+    private set { this.balance = value; }
+}
+
+public void Deposit(decimal amount)
+{
+    if (amount < 0)
+    {
+        Console.WriteLine("Amount must be a positive number!");
+    }
+    else
+    {
+        this.Balance += amount;
+    }
+}
+
+public void Withdraw(decimal amount)
+{
+    if (amount > this.Balance)
+    {
+        Console.WriteLine("Insufficient Balance!");
+    }
+    else
+    {
+        this.Balance -= amount;
+    }
+}
+
+public override string ToString()
+{
+    return $"Account {this.Id}, balance {this.Balance}";
+}
 
 
 
 
 
+Въпрос 10:  Имате следния пример: клас Circle е производен на клас Figure. По кой от следните начини е възможно да се декларират обекти?
 
 
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+Верен отговор:  Figure fig = new Circle();
 
 
 
+Въпрос 11:   Дадени са следните фрагменти от код на C#. От вас се очаква да различавате кое от посочените е конструктор, кое е метод, кое е свойство и кое поле. 
+Срещу всяка снимка има поле, от което трябва да изберете вярното
+
+
+ Верен отговор:
+ 
+1-Поле
+2-Конструктор
+3-Метод
+4-Свойство
+
+
+Въпрос 12:  Дефинирайте за кого ще е видимо поле/метод в C#, ако то е с модификатор за достъп private?
+
+
+ Верен отговор:
+ 
+ Полета и методи с модификатор за достъп private в C# са видими само в рамките на класа, в който са дефинирани. Това означава, че те не могат да бъдат достъпвани от 
+ други класове, независимо дали са в същия namespace или не.
+
+
+Въпрос 13:  Обяснете защо трябва да спазваме правилната енкапсулация на данните в класовете.
+
+
+ Верен отговор: 
+ 
+Енкапсулацията на данните е важна концепция в Обектно-ориентираното програмиране (ООП), която се основава на идеята за скриване на детайли и предоставяне на ясен и
+предсказуем интерфейс към функционалността на класа. Това е важно,за да се предотвратят нежелани промени в данните, които могат да доведат до непредсказуемо 
+поведение на обектите.
+Когато се спазва правилната енкапсулация на данните, данните на класа са скрити от външния свят и могат да бъдат достъпвани само чрез методите и 
+свойствата на класа. Това осигурява, че данните са защитени и могат да бъдат променяни само по начин, който е контролиран от програмиста. 
+Това може да предотврати непредвидими грешки в програмата и да я направи по-устойчива и лесна за поддръжка.
 
 
 
+Въпрос 14:  Открийте грешката в кода и я поправете, така че програмата да работи правилно:
+
+public class Book
+    {
+        private int count;
+        public Book()
+        {
+            count++;
+        }
+
+        public int Count { get => count; }
+    }
+
+public class Program
+    {
+        static void Main(string[] args)
+        {
+            Book book = new Book();
+            Console.WriteLine(book.Count);
+        }
+}
 
 
 
+Верен отговор: 
+ 
+ public class Book
+{
+    private static int count;
+    public Book()
+    {
+        count++;
+    }
+
+    public int Count { get => count; }
+}
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        Book book1 = new Book();
+        Book book2 = new Book();
+        Console.WriteLine(book1.Count); // изписва 2
+        Console.WriteLine(book2.Count); // изписва 2
+    }
+}
 
 
 
+Въпрос 15:  Имате създаден клас книга, за да можете да създавате обаче книги с тяхното име и автор ви е необходим конструктор.
+
+Дайте пример за дефиниране на конструктор в C#, който да създава различни книги с подадени име и автор като параметри.
 
 
 
+Верен отговор: 
 
 
+ public class Book
+{
+    public string Title { get; }
+    public string Author { get; }
 
-
+    public Book(string title, string author)
+    {
+        Title = title;
+        Author = author;
+    }
+}   
     
     
-    
-    
-    
+Въпрос 16:  Имате за задача да създадете училищна система за записване и отписване на ученици. За целта трябва да създадете някои класове, методи и свойства.
+
+За ваше удобство ще ви бъде предоставен скелет на задачата, който обаче е непълен/неработещ/некоректен. Предоставеният скелет трябва да се приведе в работещ вид.
+
+
+Верен отговор: 
+
+Program.cs
+
+static void Main(string[] args)
+
+{
+
+string schoolName = Console.ReadLine(); 
+
+School school = new School(schoolName);
+
+string[] command = Console.ReadLine().Split();
+Student student = null;
+
+while (command[0] != "End")
+{
+    switch (command[0])
+    {
+        case "Enroll":
+            student = new Student(command[1], command[2]);
+            school.EnrollStudent(student);
+            Console.WriteLine($"{student.FullName} was successfully enrolled!");
+            break;
+        case "Unenroll":
+            Student stdnt = school.UnenrollStudent(int.Parse(command[1]));
+            if (stdnt != null)
+            {
+                Console.WriteLine($"{stdnt.FullName} was successfully unenrolled!");
+            }
+            else
+            {
+                Console.WriteLine("No such Id in our database!");
+            }
+            break;
+        case "Print":
+            Console.WriteLine(school);
+            break;
+    }
+
+    command = Console.ReadLine().Split();
+}
+
+
+
+
+Student.cs
+
+public class Student 
+
+{ 
+
+private static int currentId = 1;
+
+
+private int id;
+private string fullName;
+
+public Student(string firstName, string lastName)
+{
+    this.id = currentId++;
+    this.FullName = $"{firstName} {lastName}";
+}
+
+public int Id
+{
+    get { return id; }
+}
+
+public string FullName
+{
+    get { return fullName; }
+    private set { fullName = value; }
+}
+
+public override string ToString()
+{
+    return $"{this.Id} {this.FullName}";
+}
+
+
+
+
+School.cs
+
+public class School 
+
+{ 
+
+private List<Student> students; 
+
+private string name;
+
+
+public School(string name)
+{
+    this.Name = name;
+    this.students = new List<Student>();
+}
+
+public string Name
+{
+    get { return name; }
+    private set { name = value; }
+}
+
+public void EnrollStudent(Student student)
+{
+    this.students.Add(student);
+}
+
+public Student UnenrollStudent(int id)
+{
+    Student student = this.students.FirstOrDefault(s => s.Id == id);
+    if (student != null)
+    {
+        this.students.Remove(student);
+    }
+    return student;
+}
+
+public override string ToString()
+{
+    StringBuilder sb = new StringBuilder();
+    sb.AppendLine($"{this.Name}:");
+    if (this.students.Count == 0)
+    {
+        sb.AppendLine("No students enrolled.");
+    }
+    else
+    {
+        foreach (var student in this.students)
+        {
+            sb.AppendLine(student.ToString());
+        }
+    }
+    return sb.ToString().TrimEnd();
+}
+}
+
+
+
+
+Въпрос 17:  Обяснете какво правят т.нар getters в C#:
+
+
+ Верен отговор: 
+ 
+ Getters (понякога наричани "get методи" или "accessor методи") в C# са методи, които се използват за получаване на стойността 
+ на член-променлива (field) от клас. Те имат ключовата дума "get" и обикновено са дефинирани като свойство на класа.
+Getters позволяват да се достъпят член-променливите на класа от външните светове, като предлагат безопасен начин за получаване на тези стойности. 
+Важно е да се подчертае, че getters не променят стойността на член-променливата, а само я връщат. Те са полезни, когато е необходимо да се получи 
+достъп до данните на класа, но не и да се променят, като например когато искаме да се изпишат на екрана или да се изпратят като резултат от метод.
+ 
+
+
+
+
+Въпрос 18:  Как ще запишете свойството/пропъртито години в класа Person? Напишете пример:
+
+
+
+Верен отговор: 
+
+
+using System;
+
+public class Person
+{
+    public string Name { get; set; }
+    public DateTime BirthDate { get; set; }
+
+    public int Age 
+    { 
+        get
+        {
+            DateTime now = DateTime.Today;
+            int age = now.Year - BirthDate.Year;
+            if (BirthDate > now.AddYears(-age))
+            {
+                age--;
+            }
+            return age;
+        } 
+    }
+}
+
+// пример за използване на класа Person
+public class Program
+{
+    static void Main(string[] args)
+    {
+        Person person = new Person();
+        person.Name = "Иван Иванов";
+        person.BirthDate = new DateTime(1990, 5, 3);
+        Console.WriteLine(person.Name + " е на " + person.Age + " години.");
+    }
+}
+
+
+
+Въпрос 19:  Открийте грешката в кода и я поправете, така че програмата да работи правилно:
+
+public class Dog
+    {
+        private int count;
+        public Dog()
+        {
+            count++;
+        }
+
+        public int Count { get => count; }
+    }
+
+public class Program
+    {
+        static void Main(string[] args)
+        {
+            Dog dog = new Dog();
+            Console.WriteLine(dog.Count);
+        }
+}
+
+
+Верен отговор: 
+
+
+public class Dog
+{
+    private static int count;
+    public Dog()
+    {
+        count++;
+    }
+
+    public int Count { get => count; }
+}
+
+public class Program
+{
+    static void Main(string[] args)
+    {
+        Dog dog1 = new Dog();
+        Dog dog2 = new Dog();
+        Console.WriteLine(dog1.Count); // извежда 2, тъй като има два създадени обекта от тип Dog
+        Console.WriteLine(dog2.Count); // извежда 2
+    }
+}
+
+
