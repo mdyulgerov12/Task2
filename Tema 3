@@ -581,3 +581,60 @@ public class Program
 }
 
 
+
+Въпрос 20:  Даден е следния програмен фрагмент. Открийте грешките и запишете правилния код.
+   
+    public Cat
+    {
+        private string Name;
+        private int age;
+
+        private Cat(int name, string age)       
+            Name = name;
+            Age = age;
+        }
+
+        public string name
+        {
+            get { return name; }
+            private set { name = value; }
+        }
+        public int Age
+            get { return Age; }
+            private set { age = value; }
+        }
+
+    }
+
+
+
+
+Верен отговор: 
+
+
+public class Cat
+{
+    private string name;
+    private int age;
+
+    public Cat(string name, int age)       
+    {
+        this.name = name;
+        this.age = age;
+    }
+
+    public string Name
+    {
+        get { return name; }
+        private set { name = value; }
+    }
+
+    public int Age
+    {
+        get { return age; }
+        private set { age = value; }
+    }
+}
+
+
+
