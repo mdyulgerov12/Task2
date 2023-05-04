@@ -434,7 +434,41 @@ CREATE TABLE Persons(
             
             
             
-            
+   Въпрос 19: Имате заявка, която свързва две таблици от база от данни Orders и Persons. От изброените 6 думи, изберете три верни, с които да получите 
+   работеща заявка и ги поставете в дадения код.
+
+CREATE TABLE Orders(
+
+    OrderID int NOT NULL,
+
+    OrderNumber int NOT NULL,
+
+    PersonID int,
+
+     blank  (OrderID),
+
+     blank  (PersonID)  blank  Persons(PersonID)
+     
+     
+     
+     Правилният отговор е:   
+     
+     
+     CREATE TABLE Orders(
+
+    OrderID int NOT NULL,
+
+    OrderNumber int NOT NULL,
+
+    PersonID int,
+
+    [PRIMARY KEY] (OrderID),
+
+    [FOREIGN KEY] (PersonID) [REFERENCES] Persons(PersonID)
+
+);
+
+
             
  
  
