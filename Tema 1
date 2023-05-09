@@ -107,25 +107,28 @@
 
 
 
-Въпрос 9: Направо верния код
+Въпрос 9:  Деление без остатък
+
+
+Направо верния код
 
 int n = int.Parse(Console.ReadLine()); 
-        int d2 = 0; //2Т
+        int d2 = 0; 
         int d3 = 0; 
         int d5 = 0; 
 
-        for (int i = 0; i < n; i++) //2Т
+        for (int i = 0; i < n; i++) 
         {
-            int number = int.Parse(Console.ReadLine());//2Т
+            int number = int.Parse(Console.ReadLine());
             if (number % 2 == 0) 
             {
                 d2++; 
-            }//1Т
+            }
             if (number % 3 == 0) 
             {
                 d3++; //1Т
             }
-            if (number % 5 == 0) //2Т
+            if (number % 5 == 0) 
             {
                 d5++; 
             }
@@ -169,13 +172,16 @@ public static int SumNumbers(int n) { int sum = 0; for (int i = 1; i <= n; i++) 
 
 
 
-Въпрос 14: Направо верния код
+Въпрос 14: Хотелска стая
+
+
+Направо верния код
 
 КЛЮЧ
 
     static void Main(string[] args)
     {
-        string month = Console.ReadLine(); //2Т
+        string month = Console.ReadLine(); 
         int nightsCount = int.Parse(Console.ReadLine());
         double studio = 0; 
         double apartment = 0; 
@@ -187,9 +193,9 @@ public static int SumNumbers(int n) { int sum = 0; for (int i = 1; i <= n; i++) 
                 apartment = 65;
                 if (nightsCount > 14) 
                 {
-                    studio -= studio * 0.30;//1Т
+                    studio -= studio * 0.30;
                 }
-                else if (nightsCount > 7) //2Т
+                else if (nightsCount > 7) 
                 {
                     studio -= studio * 0.05;
                 }
@@ -203,7 +209,7 @@ public static int SumNumbers(int n) { int sum = 0; for (int i = 1; i <= n; i++) 
                     studio -= studio * 0.20; 
                 }
                 break;
-            case "July"://1Т
+            case "July":
             case "August":
                 studio = 76;
                 apartment = 77;
@@ -212,12 +218,12 @@ public static int SumNumbers(int n) { int sum = 0; for (int i = 1; i <= n; i++) 
 
         if (nightsCount > 14) 
         {
-            apartment -= apartment * 0.1; //2Т
+            apartment -= apartment * 0.1; 
         }
 
         double totalApartment = apartment * nightsCount; 
         double totalStudio = studio * nightsCount; 
-        Console.WriteLine($"Apartment: {totalApartment:f2} lv.");//1Т
+        Console.WriteLine($"Apartment: {totalApartment:f2} lv.");
         Console.WriteLine($"Studio: {totalStudio:f2} lv."); 
     }
      */
@@ -245,28 +251,31 @@ for (int i = 1; i <= 100; i++) { Console.WriteLine(i); }
 
 
 
-Въпрос 17: Направо верния код
+Въпрос 17:  Елените на Дядо Коледа
+
+
+Направо верния код
 
 /* КЛЮЧ
 
-    * int days = int.Parse(Console.ReadLine());//2т
+    * int days = int.Parse(Console.ReadLine());
         int kgFood = int.Parse(Console.ReadLine()); 
         double dailyFoodFirst = double.Parse(Console.ReadLine()); 
-        double dailyFoodSecond = double.Parse(Console.ReadLine()); //2т
+        double dailyFoodSecond = double.Parse(Console.ReadLine()); 
         double dailyFoodThird = double.Parse(Console.ReadLine()); 
 
-        //2т
+        
         double foodNeeded = days * dailyFoodFirst
                             + days * dailyFoodSecond
                             + days * dailyFoodThird; 
 
-        if (kgFood >= foodNeeded) //2т
+        if (kgFood >= foodNeeded) 
         {
-            Console.WriteLine($"{Math.Floor(kgFood - foodNeeded)} kilos of food left.");//1т
+            Console.WriteLine($"{Math.Floor(kgFood - foodNeeded)} kilos of food left.");
         }
         else 
         {
-            Console.WriteLine($"{Math.Ceiling(foodNeeded - kgFood)} more kilos of food are needed.");//1т
+            Console.WriteLine($"{Math.Ceiling(foodNeeded - kgFood)} more kilos of food are needed.");
         }
      
      */
@@ -276,28 +285,30 @@ for (int i = 1; i <= 100; i++) { Console.WriteLine(i); }
 
 
 
-Въпрос 18: Направо верния код
+Въпрос 18:  Цифри
+
+Направо верния код
 
 КЛЮЧ
 
     int number = int.Parse(Console.ReadLine()); 
         int firstDigit = number / 100; 
-        int secondDigit = (number / 10) % 10; //2Т
-        int thirdDigit = number % 10; //2Т
+        int secondDigit = (number / 10) % 10; 
+        int thirdDigit = number % 10; 
         int rows = firstDigit + secondDigit; 
         int cols = firstDigit + thirdDigit; 
 
-        for (int row = 0; row < rows; row++) //2Т
+        for (int row = 0; row < rows; row++) 
         {
-            for (int col = 0; col < cols; col++) //2Т
+            for (int col = 0; col < cols; col++) 
             {
                 if (number % 5 == 0) 
                 {
                     number -= firstDigit;
                 }
-                else if (number % 3 == 0) //1Т
+                else if (number % 3 == 0) 
                 {
-                    number -= secondDigit;//1Т
+                    number -= secondDigit;
                 }
                 else
                 {
@@ -402,3 +413,99 @@ public void PrintSquare(int n) { for (int i = 1; i <= n; i++) { for (int j = 1; 
 Въпрос 26: Посочете как задаваме в C# пълната форма на условни конструкции?
 
 Правилният отговор е: if(true) { //some code... } else { //some code... }
+
+
+
+
+Въпрос 27:   Футболен мач
+
+
+Правилният отговор е:
+
+
+/*
+         КЛЮЧ
+        static void Main(string[] args)
+        {
+            string sector = Console.ReadLine(); 
+            int row = int.Parse(Console.ReadLine());
+            int col = int.Parse(Console.ReadLine()); 
+            double totalSum = 0;
+
+            switch (sector)
+            { 
+                case "Sector A":
+                    totalSum = GetTotalProfit(row, col, 11.60); 
+                    break; 
+                case "Sector B":
+                    totalSum = GetTotalProfit(row, col, 14.50);
+                    break;
+                case "Sector C": 
+                    totalSum = GetTotalProfit(row, col, 16.10); 
+                    break;
+                case "Sector D"://1Т
+                    totalSum = GetTotalProfit(row, col, 8.40);
+                    break;
+            }
+            Console.WriteLine($"{sector} profit is {totalSum:f2} lv.");
+        }
+        static double GetTotalProfit(int row, int col, double price)
+        {
+            return row * col * price;
+        }
+         */
+
+
+
+
+
+Въпрос 28:  Болница
+
+
+
+
+Правилният отговор е:
+
+
+
+         КЛЮЧ
+        static void Main(string[] args)
+        {
+            int days = int.Parse(Console.ReadLine());
+            int doctors = 7;
+            int treated = 0; 
+            int untreated = 0; 
+            for (int day = 1; day <= days; day++) 
+            {
+                int patientsCount = int.Parse(Console.ReadLine());
+
+                if (day % 3 == 0 && untreated > treated) 
+                {
+                    doctors++; 
+                }
+                if (patientsCount <= doctors)
+                {
+                    treated += patientsCount; 
+                }
+                else
+                {//1Т
+                    treated += doctors;
+                    untreated += (patientsCount - doctors);
+                } 
+            } 
+            Console.WriteLine($"Treated patients: {treated}."); 
+            Console.WriteLine($"Untreated patients: {untreated}."); 
+        }
+         */
+
+
+
+
+
+
+
+
+
+
+
+
