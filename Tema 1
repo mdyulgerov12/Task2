@@ -497,10 +497,61 @@ public void PrintSquare(int n) { for (int i = 1; i <= n; i++) { for (int j = 1; 
 
 
 
+Въпрос 29:  Посочете правилната стойност по подразбиране към всеки от типовете данни:
+
+
+Правилният отговор е:
+
+ decimal → 0.0m 
+ float → 0.0f 
+ bool → false
+ object → null
+ char → '\u0000'
+ sbyte → 0
+ string → null
+
+
+Въпрос 30:  Посочете кои езици за програмиране работят с компилатор, кои с интерпретатор?
+
+
+Правилният отговор е:
+
+
+Python	[с интерпретатор]
+PHP	[с интерпретатор]
+C++	[с компилатор]
+C#	[с компилатор]
+Java [с компилатор]
+JavaScript 	[с интерпретатор]
 
 
 
 
+Въпрос 31:Дайте пример за конзолна програма, която чете парола (един ред с произволен текст), въведена от потребителя, и 
+проверява дали въведеното съвпада с фразата “s3cr3t!P@ssw0rd”. При съвпадение да се изведе “Welcome”. При несъвпадение да се изведе “Wrong password!”.
+
+
+Правилният отговор е:
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Enter password: ");
+        string password = Console.ReadLine();
+
+        if (password == "s3cr3t!P@ssw0rd")
+        {
+            Console.WriteLine("Welcome");
+        }
+        else
+        {
+            Console.WriteLine("Wrong password!");
+        }
+    }
+}
 
 
 
