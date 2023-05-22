@@ -327,6 +327,32 @@ LIMIT 1
 Първият резултат ще бъде корабът с най-голяма скорост, заедно с името на неговата дестинация.
 
 
+Въпрос 24:  Като е използвана базата данни soft_uni, е създадена заявка за намиране на тримата служители 
+с най-висока заплата от отдел 'Information Services'.  Моля, поставете думите в текста на заявката, за да получите работещ коректно код.
+
+
+Правилен отговор: 
+
+SELECT e.employee_id, e.first_name, e.salary, d.name FROM employees AS e
+
+JOIN departments AS d ON d.department_id = e.department_id
+
+WHERE d.name='Information Services' ORDER BY e.salary DESC LIMIT 3;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
